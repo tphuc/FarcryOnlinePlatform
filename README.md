@@ -26,4 +26,12 @@
  
  - **React + Electron (desktop app)**:
       + axios (module for calling rest-api)
+
       
+## Implement
+- **Farcry launcher (desktop app)**
+    + 
+- **Farcry Match Watchdog (CLI interface written in Python)**
+    + 
+- **Farcry Backend**
+    +

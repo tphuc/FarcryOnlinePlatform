@@ -41,7 +41,7 @@
 
 - **Farcry Backend**
     - Storing our database
-        + player
+        + **player**
             + authentication(password, ...)
             + profile
                 + avatar
@@ -49,7 +49,7 @@
                     + player_name
                     + player_class
                     + player_costume
-        + match
+        + **match**
             + frags
             + statistics
 

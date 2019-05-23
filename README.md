@@ -4,20 +4,8 @@
   - Create an online platform that can **store, display** information of Farcry **matches** and **players**
 
 ## Features
-    
-   -**user**
-      + account, password authenticate
-      
-      + profile setting
-   
-        . player_name
-        . ...
-       
-   -**match**
-      + frags
-
-      + statistics
-   -...
+    -
+    -
 ## Tools
 
  - **Django (backend)**

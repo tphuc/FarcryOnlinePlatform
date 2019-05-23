@@ -24,6 +24,6 @@
  - **Django (backend)**
       + django-rest-framwork : creating RESTFUL API
  
- - **REACT (front-end)**:
+ - **React + Electron (desktop app)**:
       + axios (module for calling rest-api)
       

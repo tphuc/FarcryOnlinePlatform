@@ -42,4 +42,4 @@
             + statistics
 
 ![diagram1](/description/diagram1.png)
-![diagram2](/descriptino/diagram2.png)
+![diagram2](/description/diagram2.png)

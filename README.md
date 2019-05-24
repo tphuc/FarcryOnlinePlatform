@@ -46,6 +46,7 @@
 ![diagram2](/description/diagram2.png)
 
 # Waypoints
+## 0. Setting up Electron with React
 
 ## 1. Collect static data
 - If you want to store setting for each player, you have to make sure that your "setting data" sent to "Farcry machine" is valid
@@ -158,6 +159,16 @@
 
   ```
   - references: https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react
+  
+  ## 4. Authenticate React with our backend
+  - references: https://www.youtube.com/watch?v=BxzO2M7QcZw
+  
+  ## 5. Farcry WatchDog
+  - First we need to write a tool (virtual machine) for automatically write to log file
+  - Parsing data from log file (frags, match)
+  - Sending data with rest-api
+  
+  
   
               
       

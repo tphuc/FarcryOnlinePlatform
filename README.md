@@ -86,4 +86,80 @@
       + key_binding
         ```
         ```
+   
+   ## 2. Create django models
+      + Users
+            - password
+            - username
+            - profile
+       
+      + users_profile
+            - user ( foreign key)
+            _ [settings]
+       
+      + matchs
+            _ start_time
+            - end_time
+           
+      + match_frags
+            - match (forein key)
+            - frag_time
+            - killer_name
+            - victime_name
+            - weapon_code
+ 
+   ## 3. Serializer with Django-rest-framwork
+      
+      - First install django-rest-framework. Make sure you add "rest_framework" to INSTALLED_APPS
+      
+      - Adding serializers, views. Serializer converts queryset data of a model to XML/JSON format
+      
+      matches-
+            \_ models.py
+            \_ serializers.py
+            \_ ...
+            
+  ```python
+      #matches/serializers.py
+      from rest_framework import serializers
+      from .models import Match
+
+      class MatchSerializer(serializers.ModelSerializer):
+          class Meta:
+            model = Match
+            fields = '__all__'
+  ```
+  ```python
+      #matches/views.py
+      from .models import Match
+      from .serializers import MatchSerializer
+      # Create your views here.
+
+      class MatchView(viewsets.ModelViewSet):
+          serializer_class = MacthSerializer
+          queryset = Match.objects.all()
+  ```
+      - Add router to settings.py
+  ```python
+  from rest_framework import routers
+  from matches.views import MatchView
+  from users.views import UserView
+
+
+  router = routers.DefaultRouter()
+  router.register(r'blogs', MatchView, 'blogs')
+  router.register(r'tags', UserView, 'tags')
+  
+  urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include(router.urls))
+  ]
+
+
+  ```
+  - references: https://scotch.io/tutorials/build-a-to-do-application-using-django-and-react
+  
+              
+      
+            
 

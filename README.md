@@ -1,3 +1,3 @@
-##Logic of the models
+## Logic of the models
 ----------------------------
 ![model](/models/model.PNG)

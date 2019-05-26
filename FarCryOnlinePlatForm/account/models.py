@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Users(models.Model):
-    username = models.CharField()
-    password = models.CharField()
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
 
 
 class User_Settings(models.Model):
@@ -19,25 +19,9 @@ class User_Settings(models.Model):
         (EVIL_WORKER, "bbjects/characters/workers/evil_worker/evil_worker_MP.cgf"),
         (MERTZ, "objects/characters/pmodels/story_characters/mertz/mertz_mp.cgf")
     ]
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.ForeignKey(Users, on_delete=models.CASCADE)
     screen_quality = models.IntegerField()
-    lazy_weapon = models.DecimalField()
-    brightness = models.DecimalField()
-    model = models.CharField(choices=model_choices, default=HERO)
-    player_skin = models.IntegerField()
-
-
-class Matches(models.Model):
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-
-
-class Match_frags(models.Model):
-    match = models.ForeignKey(Match, on_delete=models.CASCADE)
-    frag_time = models.DateField()
-    killer_name = models.ForeignKey(User)
-    victim_name = models.ForeignKey(User)
-    weapon_code = models.CharField
-
-
-
+    lazy_weapon = models.DecimalField(decimal_places=1, max_digits=1)
+    brightness = models.DecimalField(decimal_places=1, max_digits=1)
+    model = models.CharField(max_length=200, choices=model_choices, default=HERO)
+    player_skin = models.IntegerField() 

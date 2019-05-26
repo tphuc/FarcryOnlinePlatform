@@ -20,7 +20,8 @@ from account import views
 
 
 router = routers.DefaultRouter()
-router.register(r'account', views.UserView, 'user')
+router.register(r'account/user', views.UserView, 'user')
+router.register(r'account/user/<int:pk>/settings', views.User_SettingsView, 'settings')
 
 
 urlpatterns = [

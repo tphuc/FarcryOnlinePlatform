@@ -1,0 +1,1 @@
+export const SET_SLIDER_VALUE = 'SET_SLIDER_VALUE'

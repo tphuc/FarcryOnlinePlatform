@@ -1,0 +1,16 @@
+.nav-tabs .nav-link {
+    border-radius: 0
+}
+
+.tab {
+    color: #3bc0c4;
+    border: 5px solid red;
+}
+
+.tab:hover{
+    color: #3bc0c4;
+    background-color: #c0c0c0
+}
+.btn {
+    border-radius: 0;
+}

@@ -26,5 +26,6 @@ router.register(r'account/user/<int:pk>/settings', views.User_SettingsView, 'set
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('', include('accounts.urls'))
 ]

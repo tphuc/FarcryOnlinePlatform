@@ -29,8 +29,8 @@ ALLOWED_HOSTS = []
 
 
 # CORS_ORIGIN_WHITELIST = (
-#          'localhost:3000/'
-#      )
+#     'localhost:3000/'
+# )
 
 
 # Application definition
@@ -42,12 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
+    'knox',
     'rest_framework',
     'corsheaders',
+    'account',
+    'accounts',
     
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':
+        ['knox.auth.TokenAuthentication',]
+}
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -58,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'FarCryOnlinePlatForm.urls'
 

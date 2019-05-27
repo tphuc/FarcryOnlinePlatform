@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setSliderValue } from '../redux/actions/profileSetting';
+import { setSliderValue } from '../redux/actions/setting'
 import store from '../redux/store';
 import '../styles/Navigator.css';
 import { Tabs, Tab, Container, Form, Button, Row } from 'react-bootstrap';
@@ -167,9 +167,9 @@ const Index = (props) => {
 
 const mapStateToProps = (state) => (
     {
-        lazyWeapon: state.lazyWeapon,
-        screenBrightness: state.screenBrightness,
-        graphicQuality: state.graphicQuality,
+        lazyWeapon: state.setting.lazyWeapon,
+        screenBrightness: state.setting.screenBrightness,
+        graphicQuality: state.setting.graphicQuality,
     }
 )
 

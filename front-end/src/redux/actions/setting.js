@@ -1,4 +1,3 @@
-
 import * as types from './types'
 
 export const setSliderValue = (value, varName) => {

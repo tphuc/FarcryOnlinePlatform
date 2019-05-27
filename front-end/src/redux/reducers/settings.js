@@ -1,7 +1,18 @@
 import * as types from '../actions/types'
-const reducer = (state, action) => {
+
+const initialState = {
+    lazyWeapon : 1,
+    screenBrightness : 1,
+    graphicQuality : 3,
+    playerModel : 'Jack',
+    skinColor : 2,
+}
+
+
+const setting = (state = initialState, action) => {
 
     switch(action.type){
+
         case types.SET_SLIDER_VALUE:
             return{
                 ...state,
@@ -11,6 +22,6 @@ const reducer = (state, action) => {
         default :
             return state
     }
-    
 }
-export default reducer;
+
+export default setting;

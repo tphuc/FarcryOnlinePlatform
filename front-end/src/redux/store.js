@@ -1,13 +1,9 @@
-import reducer from  './reducers/index'
-import { createStore } from 'redux'
+import setting from  './reducers/settings';
+import auth from './reducers/auth'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
 
-const initialState = {
-    lazyWeapon : 1,
-    screenBrightness : 1,
-    graphicQuality : 3,
-    playerModel : 'Jack',
-    skinColor : 2,
-}
 
-const store = createStore(reducer, initialState);
+const reducer = combineReducers({auth: auth, setting: setting})
+const store = createStore(reducer, {}, applyMiddleware(thunk));
 export default store;

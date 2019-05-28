@@ -34,6 +34,8 @@ class Index extends Component {
                 <h1 className='text-center pt-5' style={{color: '#444444'}}> Login </h1>
                 <Row>
                     <TextField
+                        error =  { this.props.errors['username'] || this.props.errors['authenticate_error'] ? true : false }
+                        helperText = { this.props.errors['username'] ? this.props.errors['username'] : "" }
                         label="Username"
                         type="username"
                         name="username"
@@ -45,6 +47,8 @@ class Index extends Component {
                         fullWidth
                     />
                     <TextField
+                        error =  { this.props.errors['password'] || this.props.errors['authenticate_error'] ? true : false }
+                        helperText = { this.props.errors['password'] ? this.props.errors['password'] : "" }
                         id="outlined-password-input"
                         label="Password"
                         type="password"
@@ -60,7 +64,8 @@ class Index extends Component {
 
                 <Row >
                     <Button type='button' variant="info" onClick={(e) => {
-                        store.dispatch(login(this.state.username, this.state.password))}} 
+                        store.dispatch(login(this.state.username, this.state.password));
+                    }} 
                         block> Login </Button>
                 </Row>
                 <p className='text-center mb-1 text-secondary'>or</p>
@@ -73,53 +78,11 @@ class Index extends Component {
         )
     }
 }
-// const Index = (props) => {
-//     return (
-//         <div>
-//             <Navigator></Navigator>
-//             <Container style={{width:"80%", maxWidth: 500 }} >
-//                 <h1 className='text-center pt-5' style={{color: '#444444'}}> Login </h1>
-//                 <Row>
-//                     <TextField
-//                         label="Username"
-//                         type="username"
-//                         name="username"
-//                         autoComplete="email"
-//                         margin="normal"
-//                         variant="outlined"
-//                         fullWidth
-//                     />
-//                     <TextField
-//                         id="outlined-password-input"
-//                         label="Password"
-//                         type="password"
-//                         autoComplete="current-password"
-//                         margin="normal"
-//                         variant="outlined"
-//                         fullWidth
-//                     />
-//                 </Row>
-
-//                 <Row >
-//                     <Button type='button' variant="info" onClick={(e) => {
-//                         store.dispatch(login())
-//                     }
-//                     } block> Login </Button>
-//                 </Row>
-//                 <p className='text-center mb-1 text-secondary'>or</p>
-//                 <Row >
-//                     <Button type='button' variant="success" block> Signup </Button>
-//                 </Row>
-                
-//             </Container>
-//         </div>
-//     )
-
-// }
 
 const mapStateToProps = (state) => (
     {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        errors: state.error.msg
     }
 )
 export default connect(mapStateToProps)(Index);

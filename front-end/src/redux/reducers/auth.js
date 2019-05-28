@@ -23,6 +23,7 @@ const auth = (state = initialState, action) => {
                 isAuthenticated: true,
                 user: action.payload
             };
+
         case types.REGISTER_SUCCESS:
         case types.LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
@@ -33,18 +34,22 @@ const auth = (state = initialState, action) => {
                 isLoading: false
             };
         
+        
         case types.USER_LOGOUT:
         case types.LOGOUT_SUCCESS:
         case types.LOGIN_FAILED:
         case types.AUTH_ERROR:
-            localStorage.removeItem('token')
-            return {
-                ...state,
-                token: null,
-                user: null,
-                isAuthenticated: null,
-                isLoading: false
-            };
+        case types.REGISTER_FAILED:
+        localStorage.removeItem('token');
+        return {
+            ...state,
+            token: null,
+            user: null,
+            isAuthenticated: null,
+            isLoading: false
+        };
+            
+            
         default:
             return state
     }

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navbar, Nav, Form,  Button } from 'react-bootstrap';
+import { Navbar, Nav, Form,  Button, Image } from 'react-bootstrap';
 import store from '../redux/store';
 import {logout} from '../redux/actions/auth'
 import { connect } from 'react-redux';
+import logo from '../static/logo4.png';
 
 
 const handleLogout = (e) => {
@@ -12,8 +13,10 @@ const handleLogout = (e) => {
 }
 const Navigator = (props) => {
     return (
-        <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="/">Farcry Online</Navbar.Brand>
+        <Navbar variant="dark">
+            <Navbar.Brand href="/" >
+                <Image src={logo} style={{width:'50%', height:'50%', maxWidth:400}}></Image>
+            </Navbar.Brand>
             {
                 !props.isAuthenticated ?
                 (<Button href='/login' className='ml-auto' variant="outline-info">Login</Button>):

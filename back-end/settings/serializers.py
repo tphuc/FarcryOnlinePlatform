@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import User_Settings
+from .models import UserSettings
 
 
 class SettingSerializer(serializers.Serializer):
     class Meta:
-        model = User_Settings
+        model = UserSettings
         fields = ('screen_quality', 'lazy_weapon', 'brightness', 'model', 'player_skin')

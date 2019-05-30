@@ -3,5 +3,5 @@ from .api import SettingAPI
 
 
 urlpatterns = [
-    # path('api/settings', SettingAPI.as_view()),
+    path('api/settings', SettingAPI.as_view()),
 ]

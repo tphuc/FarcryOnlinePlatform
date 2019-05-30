@@ -10,5 +10,5 @@ class SettingAPI(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         settings = serializer.save()
         return Response({
-            'settings': SettingSerializer(settings, context=self.get_serializer_context()).data,)
+            'settings': SettingSerializer(settings, context=self.get_serializer_context()).data
         })

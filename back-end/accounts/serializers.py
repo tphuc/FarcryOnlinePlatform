@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from settings.models import UserSettings
 from django.contrib.auth import authenticate
 
 # user serializer
@@ -31,3 +31,12 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Incorrect Credentials")
 
+class UserSettingSerializer(serializers.Serializer):
+    
+    class Meta:
+        model = UserSerializer
+        fields = '__all__'
+    
+    def create(self, validated_data):
+        settings = UserSettings.objects.create(**validated_data)
+        return settings

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import User_Settings
 
 from django.contrib.auth import authenticate
 
@@ -32,8 +31,3 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Incorrect Credentials")
 
-# settings
-class SettingSerializer(serializers.Serializer):
-    class Meta:
-        model = User_Settings
-        fields = ('screen_quality', 'lazy_weapon', 'brightness', 'model', 'player_skin')

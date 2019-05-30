@@ -1,14 +1,10 @@
 import React from 'react';
 import {  Col } from 'react-bootstrap';
-
 import { connect } from 'react-redux';
-
 import Profile from '../components/Profile';
 import Setting from '../components/Setting';
 import Navigator from '../components/Navigator';
-
 import SideBar from '../components/Sidebar';
-
 import {Redirect} from 'react-router-dom'
 
 

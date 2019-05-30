@@ -16,12 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from account import views
 
 
 router = routers.DefaultRouter()
-router.register(r'account/user', views.UserView, 'user')
-router.register(r'account/user/<int:pk>/settings', views.User_SettingsView, 'settings')
 
 
 urlpatterns = [

@@ -5,9 +5,11 @@ from django.contrib.auth import authenticate
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
+    settings = serializers.StringRelatedField()
+
     class Meta:
         model = User
-        fields = ('id','username','email')
+        fields = ('id','username','email', 'settings')
 
 # register/signup
 class RegisterSerializer(serializers.ModelSerializer):
@@ -31,6 +33,7 @@ class LoginSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("Incorrect Credentials")
 
+# settings
 class UserSettingSerializer(serializers.Serializer):
     
     class Meta:

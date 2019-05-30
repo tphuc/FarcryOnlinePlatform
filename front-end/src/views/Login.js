@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navigator from '../components/Navigator';
 import { Container, Row, Button } from 'react-bootstrap';
 import {TextField, createMuiTheme}from '@material-ui/core';
 import { connect } from 'react-redux';

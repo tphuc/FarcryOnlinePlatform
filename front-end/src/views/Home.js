@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container, Col, Row, Button, Nav, Tab } from 'react-bootstrap';
-import store from '../redux/store';
+import {  Col } from 'react-bootstrap';
+
 import { connect } from 'react-redux';
-import ProfileSetting from '../components/ProfileSetting';
+
 import Profile from '../components/Profile';
 import Setting from '../components/Setting';
 import Navigator from '../components/Navigator';
-import Hero from '../components/Hero';
+
 import SideBar from '../components/Sidebar';
-import Header from '../components/Header';
+
 import {Redirect} from 'react-router-dom'
 
 

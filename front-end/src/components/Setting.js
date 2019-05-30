@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Container, Form, Button } from 'react-bootstrap';
+import { Row, Container, Button } from 'react-bootstrap';
 import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 import {Typography, OutlinedInput} from '@material-ui/core';
 import Slider from '@material-ui/lab/Slider';

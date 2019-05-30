@@ -1,9 +1,8 @@
 import React from 'react';
-import { Navbar, Nav, Form,  Button, Image, Row } from 'react-bootstrap';
+import { Navbar,  Button,  Row } from 'react-bootstrap';
 import store from '../redux/store';
 import {logout} from '../redux/actions/auth'
 import { connect } from 'react-redux';
-import logo from '../static/logo4.png';
 import {Typography} from '@material-ui/core';
 
 

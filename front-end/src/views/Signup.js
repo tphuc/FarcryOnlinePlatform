@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
 import Navigator from '../components/Navigator';
 import { Container, Row, Button, Alert } from 'react-bootstrap';
-import TextField from '@material-ui/core/TextField';
+import {TextField, createMuiTheme} from '@material-ui/core';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {register} from '../redux/actions/auth';
 import store from '../redux/store';
+import { ThemeProvider } from '@material-ui/styles';
 
 
-
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#00838f'
+      },
+      type: "dark"
+    }
+});
 
 class Index extends Component {
     constructor(props){
@@ -41,11 +49,10 @@ class Index extends Component {
             this.props.isAuthenticated ?
             <Redirect to='/'></Redirect> 
             :
-            <div>
-            <Navigator></Navigator>
+
             <Container style={{width:"80%", maxWidth: 500 }} >
-                
-                <h1 className='text-center pt-5' style={{color: '#444444'}}> Login </h1>
+                <ThemeProvider theme={theme}>
+                <h1 className='text-center pt-5' style={{color: '#eeeeee'}}> Register </h1>
                 <Row>
                 <Alert variant="danger" show={false} dismissible style={{width: '100%', height: 50}} closeLabel='X' onClose={() => this.setState({showAlert: false})}>
                     <p>{this.state.alerts}</p>
@@ -110,18 +117,23 @@ class Index extends Component {
                 </Row>
 
                 <Row >
-                    <Button type='button' variant="info" onClick={(e) => { this.handleRegister(
+                    <Button type='button' variant="outline-info" onClick={(e) => { this.handleRegister(
                         this.state.username,
                         this.state.email,
                         this.state.password,
                         this.state.confirm_password
                     )}}
-                        block> Sign up </Button>
-                </Row>
+                        block> Register </Button>
 
-                
+                </Row>
+                <p className='text-center mb-1 text-secondary'>Already have an account?</p>
+                    <Row >
+                        <Button href='/login' type='button' variant="outline-success" block> Sign in </Button>
+                    </Row>
+
+                </ThemeProvider>   
             </Container>
-        </div>
+
         )
     }
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import {AppBar} from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import {Row } from 'react-bootstrap'
 
 
 const drawerWidth = 240;
@@ -28,13 +29,13 @@ const useStyles = makeStyles(theme => ({
             width: `calc(100% - ${drawerWidth}px)`,
         },
         backgroundColor: '#006974',
-
     },
 }));
 
 function ButtonAppBar() {
     const classes = useStyles();
     return (
+        <Row>
 
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
@@ -46,6 +47,7 @@ function ButtonAppBar() {
                 </Button>
             </Toolbar>
         </AppBar>
+    </Row>
 
     );
 }

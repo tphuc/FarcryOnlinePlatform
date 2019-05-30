@@ -28,3 +28,6 @@ export const GET_ERRORS = 'GET_ERRORS'
 
 //MESSAGES
 export const CREATE_MESSAGES = 'CREATE_MESSAGES'
+
+//TABS
+export const SELECT_TAB = 'SELECT_TAB'

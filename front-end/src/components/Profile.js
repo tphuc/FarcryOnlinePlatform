@@ -1,37 +1,72 @@
 import React from 'react';
-import { Form, Button, Tab } from 'react-bootstrap';
+import { Form, Button, Tab, Container } from 'react-bootstrap';
+import { TextField, Typography } from '@material-ui/core';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider, mergeClasses } from '@material-ui/styles';
+
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#00838f'
+      },
+      type: "dark"
+    }
+  });
+
+const style = {
+    label: {
+        color: "#eeeeee"
+    },
+    input: {
+        color: '#dddddd'
+    }
+}
+
+
 const ProfileForm = () => {
     return (
-        <Tab.Pane eventKey="profile">
-            <Form action='/path'>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label >Email address</Form.Label>
-                    <Form.Control type="email" placeholder="example@gmail.com" disabled />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label>Account</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        aria-describedby="inputGroupPrepend"
-                        required
-                        disabled
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please choose a username.
-                    </Form.Control.Feedback>
-                    <Form.Control type="password" placeholder="Old password" name='old_password' />
-                    <Form.Control type="password" placeholder="New password" name='new_password' />
-                    <Form.Control type="password" placeholder="Confirm new password" name='confirm_password' />
-                </Form.Group>
-                <Button variant="primary" type="submit" >
-                    Update
-                </Button>
-            </Form>
-        </Tab.Pane>
+        <Container style={{ marginTop: 100 }}>
+            <ThemeProvider theme={theme}>
+            <Typography style={style.label} >Email address</Typography>
+            <TextField
+                id="outlined-name"
+                label="email"
+                margin="normal"
+                variant="outlined"
+                fullWidth
+            />
+
+            <Typography style={style.label}>Account</Typography>
+            <TextField
+                id="outlined-name"
+                label="username"
+                margin="normal"
+                variant="outlined"
+                fullWidth
+            />
+            <TextField
+                id="outlined-name-2"
+                label="password"
+                margin="normal"
+                variant="outlined"
+                fullWidth
+
+            />
+            <TextField
+                id="outlined-name-2"
+                label="new password"
+                margin="normal"
+                variant="outlined"
+                fullWidth
+            />
+
+            <Button variant="outline-info" type="submit" >
+                Update
+            </Button>
+            </ThemeProvider>
+        </Container>
     );
 }
 

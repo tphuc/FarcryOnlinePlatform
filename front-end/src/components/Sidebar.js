@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {Image, Nav} from 'react-bootstrap'
 import logo from '../static/logo4.png'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { withStyles } from '@material-ui/core/styles';
+import {Drawer} from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { faHome, faUser, faCog, faKeyboard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import store from '../redux/store';
+import {selectTab} from '../redux/actions/tabs';
 
 
 const drawerWidth = 240;
@@ -33,7 +34,6 @@ const useStyles = {
     },
     drawer: {
         width: drawerWidth,
-        flexShrink: 0,
     },
     selected: {
         color: "#00bcd4"
@@ -77,7 +77,10 @@ class Index extends Component {
                                     root: classes.item
                                 }}
                                 selected={text === this.state.selected}
-                                onClick={() => this.setState({ selected: text })}
+                                onClick={() => {
+                                    this.setState({ selected: text });
+                                    store.dispatch(selectTab(text))
+                            }}
                             >   
                                 <ListItemText><FontAwesomeIcon icon={tabIcons[index]}/>    {text}</ListItemText> 
                             </ListItem>

@@ -43,7 +43,7 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Credentials")
 
 # settings
-class UserSettingSerializer(serializers.Serializer):
+class UserSettingSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserSettings
@@ -56,8 +56,8 @@ class UserSettingSerializer(serializers.Serializer):
     
     def update(self, instance, validated_data):
         instance.screen_quality = validated_data['screen_quality']
+        print('updateting-----------------')
         user = self.context['request'].user
-        print('@@@@@@@@@@@@@@@@@@@@@@@@@', user)
         instance.user = user
         return instance
 

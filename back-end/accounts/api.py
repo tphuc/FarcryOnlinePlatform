@@ -47,12 +47,9 @@ class SettingAPI(generics.GenericAPIView):
         pass
 
     def put(self, request, *args, **kwargs):
-
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.user = self.request.user
-        settings = serializer.update(instance=serializer, validated_data=request.data)
-        print('************************')
+        oldSettings = UserSettings.objects.get(pk=self.request.user.id)
+        serializer = self.get_serializer(data=request.data)           
+        settings = serializer.update(instance=oldSettings, validated_data=request.data)
         
         return Response({
             'settings': UserSettingSerializer(settings, context=self.get_serializer_context()).data,

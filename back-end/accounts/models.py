@@ -17,7 +17,6 @@ class UserSettings(models.Model):
         (MERTZ, "objects/characters/pmodels/story_characters/mertz/mertz_mp.cgf")
     ]
     username = models.OneToOneField(User, related_name='settings', on_delete=models.CASCADE)
-    order = models.IntegerField()
     screen_quality = models.IntegerField()
     lazy_weapon = models.DecimalField(decimal_places=1, max_digits=1)
     brightness = models.DecimalField(decimal_places=1, max_digits=1)

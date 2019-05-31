@@ -16,9 +16,12 @@ class UserSettings(models.Model):
         (EVIL_WORKER, "bbjects/characters/workers/evil_worker/evil_worker_MP.cgf"),
         (MERTZ, "objects/characters/pmodels/story_characters/mertz/mertz_mp.cgf")
     ]
-    username = models.OneToOneField(User, related_name='settings', on_delete=models.CASCADE)
-    screen_quality = models.IntegerField()
-    lazy_weapon = models.DecimalField(decimal_places=1, max_digits=1)
-    brightness = models.DecimalField(decimal_places=1, max_digits=1)
+    user = models.OneToOneField(User, related_name='settings', on_delete=models.CASCADE)
+    screen_quality = models.IntegerField(default=1)
+    lazy_weapon = models.DecimalField(decimal_places=1, max_digits=2, default=1.0)
+    brightness = models.DecimalField(decimal_places=1, max_digits=2, default=1.0)
     model = models.CharField(max_length=200, choices=model_choices, default=HERO)
-    player_skin = models.IntegerField()
+    player_skin = models.IntegerField(default=1)
+
+    def __str__(self):
+        return str(self.screen_quality )+ str(self.lazy_weapon) + str(self.brightness) + self.model + str(self.player_skin)

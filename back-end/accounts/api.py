@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, UserSettingSerializer
-from .models import UserSettings
+from .models import UserSettings, User
 
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -44,12 +44,16 @@ class SettingAPI(generics.GenericAPIView):
     queryset = UserSettings.objects.all()
 
     def post(self, request, *args, **kwargs):
+        pass
+
+    def put(self, request, *args, **kwargs):
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        settings = serializer.save()
+        serializer.user = self.request.user
+        settings = serializer.update(instance=serializer, validated_data=request.data)
+        print('************************')
+        
         return Response({
             'settings': UserSettingSerializer(settings, context=self.get_serializer_context()).data,
         })
-
-    def put(self, request, *args, **kwargs):
-        pass

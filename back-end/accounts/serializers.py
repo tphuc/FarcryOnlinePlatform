@@ -10,6 +10,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username','email', 'settings')
+    
+
+        
 
 # register/signup
 class RegisterSerializer(serializers.ModelSerializer):
@@ -19,7 +22,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password' : {'write_only': True}}
 
     def create(self, validated_data):
+        print(validated_data)
+        print(self.context)
         user = User.objects.create_user(**validated_data)
+        print("username_id", user.id)
+        a = UserSettings.objects.create(user=user)
+        print("setting:", user.settings)
+
         return user
 
 # login
@@ -38,8 +47,17 @@ class UserSettingSerializer(serializers.Serializer):
     
     class Meta:
         model = UserSettings
-        fields = ('username', 'screen_quality', 'lazy_weapon', 'brightness', 'model', 'player_skin')
+        fields = ('user', 'screen_quality', 'lazy_weapon', 'brightness', 'model', 'player_skin')
     
     def create(self, validated_data):
-        settings = UserSettings.objects.create(**validated_data)
+        user = self.context['request'].user
+        settings = UserSettings.objects.create(user=user)
         return settings
+    
+    def update(self, instance, validated_data):
+        instance.screen_quality = validated_data['screen_quality']
+        user = self.context['request'].user
+        print('@@@@@@@@@@@@@@@@@@@@@@@@@', user)
+        instance.user = user
+        return instance
+

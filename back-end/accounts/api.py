@@ -43,9 +43,6 @@ class SettingAPI(generics.GenericAPIView):
     serializer_class = UserSettingSerializer
     queryset = UserSettings.objects.all()
 
-    def post(self, request, *args, **kwargs):
-        pass
-
     def put(self, request, *args, **kwargs):
         oldSettings = UserSettings.objects.get(pk=self.request.user.id)
         serializer = self.get_serializer(data=request.data)           

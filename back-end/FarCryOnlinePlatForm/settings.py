@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'accounts',
-    'settings'
+    'settings',
+    'matches'
     
 ]
 REST_FRAMEWORK = {

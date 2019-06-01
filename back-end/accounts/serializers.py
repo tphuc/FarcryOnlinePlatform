@@ -56,7 +56,6 @@ class UserSettingSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         instance.screen_quality = validated_data['screen_quality']
-        print('updateting-----------------')
         user = self.context['request'].user
         instance.user = user
         return instance

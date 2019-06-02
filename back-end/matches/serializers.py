@@ -4,24 +4,25 @@ from .models import Matches, MatchFrags
 
 
 class MatchSerializers(serializers.ModelSerializer):
+    match_frags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='id')
+
     class Meta:
         model = Matches
-        fields = ('start_time', 'end_time')
+        fields = ('id', 'start_time', 'end_time', 'match_frags')
 
     def create(self, validated_data):
-        match = Matches.objects.create()
+        match = Matches.objects.create(start_time=validated_data['start_time'], end_time=validated_data['end_time'])
         return match
 
 
 class MatchFragSerializers(serializers.ModelSerializer):
     class Meta:
         model = MatchFrags
-        fields = ('killer', 'victim', 'weapon_code', 'frag_time', 'match')
+        fields = ('id', 'killer', 'victim', 'weapon_code', 'frag_time', 'match')
 
     def create(self, validated_data):
-        match_frag = MatchFrags.objects.create()
-        match_frag.killer = User.objects.get(username=validated_data['killer'])
-        match_frag.victim = User.objects.get(username=validated_data['victim'])
-        match_frag.weapon_code = validated_data['weapon_code']
-        match_frag.match = Match.objects.get(id=validated_data['match_id'])
+        match_frag = MatchFrags.objects.create(**validated_data)
         return match_frag
+
+
+    

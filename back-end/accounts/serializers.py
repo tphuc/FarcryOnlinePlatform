@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
     settings = serializers.StringRelatedField()
+    match_frags_killer = SlugRelatedField(many=True, read_only=True, slug_field='username')
+    match_frags_victime = SlugRelatedField(many=True, read_only=True, slug_field='username')
 
     class Meta:
         model = User
@@ -21,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
-        a = UserSettings.objects.create(user=user)
+        UserSettings.objects.create(user=user)
         return user
 
 # login

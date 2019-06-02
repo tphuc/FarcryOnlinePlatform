@@ -6,8 +6,8 @@ from django.contrib.auth import authenticate
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
     settings = serializers.StringRelatedField()
-    match_frags_killer = SlugRelatedField(many=True, read_only=True, slug_field='killer')
-    match_frags_victime = SlugRelatedField(many=True, read_only=True, slug_field='victime')
+    match_frags_killer = serializers.SlugRelatedField(many=True, read_only=True, slug_field='killer')
+    match_frags_victime = serializers.SlugRelatedField(many=True, read_only=True, slug_field='victime')
 
     class Meta:
         model = User

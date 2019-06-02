@@ -12,8 +12,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id','username','email', 'settings')
     
 
-        
-
 # register/signup
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,13 +20,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password' : {'write_only': True}}
 
     def create(self, validated_data):
-        print(validated_data)
-        print(self.context)
         user = User.objects.create_user(**validated_data)
-        print("username_id", user.id)
         a = UserSettings.objects.create(user=user)
-        print("setting:", user.settings)
-
         return user
 
 # login

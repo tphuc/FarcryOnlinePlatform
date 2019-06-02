@@ -2,7 +2,9 @@ import React from 'react';
 import {  Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Profile from '../components/Profile';
+import Keyboard from '../components/Keymap'
 import Setting from '../components/Setting';
+
 import Navigator from '../components/Navigator';
 import SideBar from '../components/Sidebar';
 import {Redirect} from 'react-router-dom'
@@ -22,6 +24,7 @@ const Index = (props) => {
                 <Navigator></Navigator>
                 { props.selected === 'Profile' && <Profile></Profile> }
                 { props.selected === 'Setting' && <Setting></Setting> }
+                { props.selected === 'Keyboard' && <Keyboard></Keyboard> }
             </Col>
         </div>
     )

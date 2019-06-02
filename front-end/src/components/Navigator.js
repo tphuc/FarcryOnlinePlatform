@@ -19,9 +19,8 @@ const Navigator = (props) => {
         <Navbar variant='dark' fixed='top' style={{backgroundColor: '#111111'}} >
             <Typography variant="h6" style={{marginLeft: 240, color:'#00bcd4'}} >Farcry Online</Typography>
             {
-                !props.isAuthenticated ?
-                (<Button href='/login' className='ml-auto' variant="outline-info">Play</Button>):
-                (<Button  className='ml-auto' variant="outline-info" onClick={handleLogout} >Logout</Button>)
+                props.isAuthenticated &&
+                <Button  className='ml-auto' variant="outline-info" onClick={handleLogout}>Logout</Button>
             }
         </Navbar>
         </Row>

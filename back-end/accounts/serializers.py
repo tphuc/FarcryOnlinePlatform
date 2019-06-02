@@ -6,12 +6,12 @@ from django.contrib.auth import authenticate
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
     settings = serializers.StringRelatedField()
-    match_frags_killer = SlugRelatedField(many=True, read_only=True, slug_field='username')
-    match_frags_victime = SlugRelatedField(many=True, read_only=True, slug_field='username')
+    match_frags_killer = SlugRelatedField(many=True, read_only=True, slug_field='killer')
+    match_frags_victime = SlugRelatedField(many=True, read_only=True, slug_field='victime')
 
     class Meta:
         model = User
-        fields = ('id','username','email', 'settings')
+        fields = ('id','username','email', 'settings', 'match_frags')
     
 
 # register/signup

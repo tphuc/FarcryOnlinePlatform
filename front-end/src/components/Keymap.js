@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 import {TextField} from '@material-ui/core';
+import {Button} from 'react-bootstrap';
 
-const keyActions = ['move_up', 'move_down', 'move_left', 'move_right']
+
 
 const keyActionsMap = {
     'MOVE_LEFT': 'a',
     'MOVE_RIGHT': 'd',
     'MOVE_BACKWARD': 's',
-    'MOVE_FORWARD' : 'w'
+    'MOVE_FORWARD' : 'w',
+    'RELOAD': 'r',
+    'MOVEMODE2': 'v',
+    'FIREMODE': 'x'
 }
+
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -40,9 +45,9 @@ class Index extends Component{
 
     render(){
         return(
-            <div style={{ marginTop: 100 }}>
+            <div style={{ marginTop: 100 , paddingBottom: 100}}>
                 <ThemeProvider theme={theme}>
-                <p> For particular reasons we only support few settings below: </p>
+                <p className='text-info'> For particular reasons we only support few settings below: </p>
                     {
                         Object.keys(keyActionsMap).map( (key, index) => (
                         <TextField
@@ -51,11 +56,23 @@ class Index extends Component{
                             margin="normal"
                             variant="outlined"
                             value={this.state[key]}
-                            onKeyPress={(e) => {this.setState({[key]: e.key}); console.log(e.key)}}
+                            onKeyPress={(e) => {
+                                for (var ind in this.state){
+                                    if (this.state[ind] === e.key && ind !== key) {
+                                        this.setState({[ind]: ''})
+                                    }
+                                };
+                                this.setState({[key]: e.key});
+                            }}
                             fullWidth
                         />))
                     }
                 </ThemeProvider>
+                
+                    <Button style={{marginTop: 50}} variant="outline-info" type="button" >
+                        Update
+                    </Button>
+
             </div>
         )
     }

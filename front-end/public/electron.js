@@ -15,8 +15,9 @@ function createWindow() {
             navigateOnDragDrop: true
         },
         resizable: false,
-        titleBarStyle:'hidden',
-        opacity: 0.99
+        titleBarStyle:'default',
+        opacity: 0.99,
+        transparent: true
         
     })
 

@@ -129,7 +129,7 @@ const Settings = (props) => {
                 <Row style={{ marginTop: 50 }}>
                     <Button variant="outline-info" type="button" >
                         Update
-                </Button>
+                    </Button>
                 </Row>
 
 

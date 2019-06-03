@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from './views/Home'
+import Main from './views/Main'
 import Login from './views/Login'
 import Signup from './views/Signup'
 import './App.css';
@@ -19,7 +19,7 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route path="/login" component={Login} />
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" component={Main} />
                     <Route path='/signup' component={Signup} />
                 </Switch>
             </Router>

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {returnErrors} from './error'
+
 import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAILED, EXCEPTION, USER_LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS } from './types';
 
 export const loadUser = () => (dispatch, getState) => {
@@ -42,7 +44,7 @@ export const login = (username, password) => dispatch => {
             });
         })
         .catch(err => {
-
+            dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: LOGIN_FAILED
             });
@@ -59,7 +61,7 @@ export const logout = () => (dispatch, getState) => {
             });
         })
         .catch(err => {
-            console.log(err)
+            dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({type: EXCEPTION});
         });
 };
@@ -84,10 +86,12 @@ export const register = ( username, email, password ) => dispatch => {
         });
       })
       .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
-          type: REGISTER_FAILED
+            type: REGISTER_FAILED
         });
-      });
+      })
+
   };
 
 export const tokenConfig = getState => {

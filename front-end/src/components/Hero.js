@@ -6,14 +6,11 @@ const Index = () => {
         <Container >
             <Row>
                 <Col xs={12} md={12} xl={12} sm={12} lg={12} style={{ display: 'flex', alignItems:'center', justifyContent:'center'}} >
-                    <div style={{margin:5, justifyContent:'center', alignItems:"center", display:'flex'}}>
+                    <div style={{margin: 10, justifyContent:'center', alignItems:"center", display:'flex'}}>
                             <Image src="https://famfonts.com/wp-content/uploads/far-cry-wide.png" style={{ height:'auto', maxWidth:'100%'}} fluid />  
                     </div>
                 </Col>
                 <Col>
-                    <p>
-                    Challenger
-                    </p>
                     <hr></hr>
                     <h5>Status</h5>
 

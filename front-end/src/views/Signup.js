@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
-import Navigator from '../components/Navigator';
-import { Container, Row, Button } from 'react-bootstrap';
-import TextField from '@material-ui/core/TextField';
+import { Container, Row, Button, Alert } from 'react-bootstrap';
+import {TextField, createMuiTheme} from '@material-ui/core';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {register, login} from '../redux/actions/auth';
+import {register} from '../redux/actions/auth';
 import store from '../redux/store';
+import { ThemeProvider } from '@material-ui/styles';
 
 
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#00838f'
+      },
+      type: "dark"
+    }
+});
 
 class Index extends Component {
     constructor(props){
         super(props);
         this.state = {
+            alerts : "Invalid form",
             username : "",
             email: "",
             password : "",
@@ -20,16 +29,14 @@ class Index extends Component {
         }
     }
 
+
     handleRegister = (username, email, password, confirm_password) => {
         if (password === confirm_password){
             store.dispatch(register(username, email, password));
-            store.dispatch(login(username, password))
         }
 
-        this.setState({
-            confirm_password: ''
-        })
     }
+
     onChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
@@ -41,13 +48,21 @@ class Index extends Component {
             this.props.isAuthenticated ?
             <Redirect to='/'></Redirect> 
             :
-            <div>
-            <Navigator></Navigator>
+
             <Container style={{width:"80%", maxWidth: 500 }} >
-                <h1 className='text-center pt-5' style={{color: '#444444'}}> Login </h1>
+                <ThemeProvider theme={theme}>
+                <h1 className='text-center pt-5' style={{color: '#eeeeee'}}> Register </h1>
+                <Row>
+                <Alert variant="danger" show={false} dismissible style={{width: '100%', height: 50}} closeLabel='X' onClose={() => this.setState({showAlert: false})}>
+                    <p>{this.state.alerts}</p>
+                </Alert>
+
+                </Row>
                 <Row>
                     <TextField
-                        label="Username"
+                        label= "Username"
+                        error =  { this.props.errors['username'] ? true : false }
+                        helperText = { this.props.errors['username'] ? this.props.errors['username'] : "" }
                         type="username"
                         name="username"
                         autoComplete="email"
@@ -58,6 +73,8 @@ class Index extends Component {
                         fullWidth
                     />
                     <TextField
+                        error =  { this.props.errors['email'] ? true : false }
+                        helperText = { this.props.errors['email'] ? this.props.errors['email'] : "" }
                         label="Email"
                         type="email"
                         name="email"
@@ -69,6 +86,8 @@ class Index extends Component {
                         fullWidth
                     />
                     <TextField
+                        error =  { this.props.errors['password'] ? true : false }
+                        helperText = { this.props.errors['password'] ? this.props.errors['password'] : "" }
                         id="outlined-password-input"
                         label="Password"
                         type="password"
@@ -81,8 +100,10 @@ class Index extends Component {
                         fullWidth
                     />
                     <TextField
+                        error = {this.state.confirm_password !== this.state.password}
+                        helperText = {this.state.confirm_password !== this.state.password ? 'Passwords do not match!':''}
                         id="outlined-password-input"
-                        label="Confirm Password"
+                        label="Confirm password"
                         type="password"
                         name='confirm_password'
                         autoComplete="current-password"
@@ -95,25 +116,31 @@ class Index extends Component {
                 </Row>
 
                 <Row >
-                    <Button type='button' variant="info" onClick={(e) => { this.handleRegister(
+                    <Button type='button' variant="outline-info" onClick={(e) => { this.handleRegister(
                         this.state.username,
                         this.state.email,
                         this.state.password,
                         this.state.confirm_password
                     )}}
-                        block> Sign up </Button>
-                </Row>
+                        block> Register </Button>
 
-                
+                </Row>
+                <p className='text-center mb-1 text-secondary'>Already have an account?</p>
+                    <Row >
+                        <Button href='/login' type='button' variant="outline-success" block> Sign in </Button>
+                    </Row>
+
+                </ThemeProvider>   
             </Container>
-        </div>
+
         )
     }
 }
 
 const mapStateToProps = (state) => (
     {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        errors: state.error.msg
     }
 )
 export default connect(mapStateToProps)(Index);

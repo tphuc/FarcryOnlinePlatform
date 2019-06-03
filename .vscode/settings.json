@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/usr/local/bin/python3"
+    "python.pythonPath": "/home/dtran00/.local/share/virtualenvs/FarcryOnlinePlatform-2uwZJMK7/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

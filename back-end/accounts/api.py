@@ -38,6 +38,14 @@ class UserAPI(generics.RetrieveAPIView):
     def get_object(self, *args, **kwargs):
         return self.request.user
 
+    def put(self, request, *args, **kwargs):
+        oldUser = User.objects.get(pk=self.request.user.id)
+        serializer = self.get_serializer(data=request.data)
+        user = serializer.update(instance=oldUser, validated_data=request.data)
+        return Response({
+            'user': UserSerializer(user, context=self.get_serializer_context()).data,
+        })
+
 
 class SettingAPI(generics.GenericAPIView):
     serializer_class = UserSettingSerializer
@@ -47,7 +55,6 @@ class SettingAPI(generics.GenericAPIView):
         oldSettings = UserSettings.objects.get(pk=self.request.user.id)
         serializer = self.get_serializer(data=request.data)           
         settings = serializer.update(instance=oldSettings, validated_data=request.data)
-        
         return Response({
             'settings': UserSettingSerializer(settings, context=self.get_serializer_context()).data,
         })

@@ -4,8 +4,6 @@ from .models import UserSettings
 from django.contrib.auth import authenticate
 
 
-    
-
 # register/signup
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,20 +55,8 @@ class UserSettingSerializer(serializers.ModelSerializer):
         return settings
     
     def update(self, instance, validated_data):
-        instance.screen_quality = validated_data['screen_quality']
-        instance.lazy_weapon = validated_data['lazy_weapon']
-        instance.brightness = validated_data['brightness']
-        instance.model = validated_data['model']
-        instance.player_skin = validated_data['player_skin']
-        instance.ingame_name = validated_data['ingame_name']
-
-        instance.k_move_left = validated_data['k_move_left']
-        instance.k_move_right = validated_data['k_move_right']
-        instance.k_move_forward = validated_data['k_move_forward']
-        instance.k_move_backward = validated_data['k_move_backward']
-        instance.k_reload = validated_data['k_reload']
-        instance.k_movemode2 = validated_data['k_movemode2']
-        instance.k_firemode = validated_data['k_firemode']
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data[key])
         user = self.context['request'].user
         instance.user = user
         return instance
@@ -81,4 +67,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','username','email', 'settings')
+        fields = ('id','username', 'email', 'settings')
+
+    def update(self, instance, validated_data):
+        user = self.context['request'].user
+        user.set_password(validated_data['password'])
+        user.save()
+        return user

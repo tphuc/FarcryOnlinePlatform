@@ -48,3 +48,10 @@ class MatchFragViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         match_id = self.request.query_params.get('match_id', None)
         return MatchFrags.objects.filter(match_id=match_id)
+
+
+class MatchViewSet(viewsets.ModelViewSet):
+    serializer_class = MatchSerializers
+
+    def get_queryset(self):
+        return Matches.objects.all()

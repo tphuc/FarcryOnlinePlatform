@@ -46,4 +46,5 @@ class MatchFragViewSet(viewsets.ModelViewSet):
     serializer_class = MatchFragSerializers
 
     def get_queryset(self):
-        return MatchFrags.objects.filter(match=self.request.data['match_id'])
+        match_id = self.request.query_params.get('match_id', None)
+        return MatchFrags.objects.filter(match_id=match_id)

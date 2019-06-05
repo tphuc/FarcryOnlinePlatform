@@ -51,6 +51,7 @@ class Index extends Component {
         this.state = {
             selected: 'Home'
         }
+        store.dispatch(selectTab('Home'))
     }
     render() {
         const { classes } = this.props;

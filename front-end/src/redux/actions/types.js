@@ -2,6 +2,7 @@
 export const SET_SLIDER_VALUE = 'SET_SLIDER_VALUE'
 
 // USER
+
 export const USER_CREATE = 'USER_CREATE'
 export const USER_DELETE = 'USER_DELETE'
 export const USER_LOADING = 'USER_LOADING'

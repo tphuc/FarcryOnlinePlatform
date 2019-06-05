@@ -59,6 +59,7 @@ class UserSettingSerializer(serializers.ModelSerializer):
             setattr(instance, key, validated_data[key])
         user = self.context['request'].user
         instance.user = user
+        instance.save()
         return instance
 
 # user serializer

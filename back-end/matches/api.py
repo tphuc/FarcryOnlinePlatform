@@ -22,17 +22,15 @@ class MatchFragAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         new_data = {}
-        new_data['killer'] = User.objects.get(
-            username=request.data['killer']).id
-        new_data['victim'] = User.objects.get(
-            username=request.data['victim']).id
+        new_data['killer'] = request.data['killer']
+        new_data['victim'] = request.data['victim']
         new_data['weapon_code'] = request.data['weapon_code']
-        new_data['match'] = Matches.objects.get(id=request.data['match']).id
+        new_data['match_id'] = Matches.objects.get(id=request.data['match']).id
         new_data['frag_time'] = request.data['frag_time']
         serializer = self.get_serializer(data=new_data)
         serializer.is_valid(raise_exception=True)
-
         match_frag = serializer.save()
+
         return Response({
             'match_frag': MatchFragSerializers(match_frag, context=self.get_serializer_context()).data,
         })

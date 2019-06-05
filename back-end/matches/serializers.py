@@ -3,15 +3,6 @@ from django.contrib.auth.models import User
 from .models import Matches, MatchFrags
 
 
-class MatchSerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = Matches
-        fields = ('id', 'start_time', 'end_time')
-
-    def create(self, validated_data):
-        match = Matches.objects.create(start_time=validated_data['start_time'], end_time=validated_data['end_time'])
-        return match
 
 
 class MatchFragSerializers(serializers.ModelSerializer):
@@ -24,3 +15,13 @@ class MatchFragSerializers(serializers.ModelSerializer):
         return match_frag
 
 
+
+class MatchSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Matches
+        fields = ('id', 'start_time', 'end_time')
+
+    def create(self, validated_data):
+        match = Matches.objects.create(start_time=validated_data['start_time'], end_time=validated_data['end_time'])
+        return match

@@ -33,7 +33,7 @@ class UserAPI(generics.RetrieveAPIView):
         permissions.IsAuthenticated,
     ]
     serializer_class = UserSerializer
-    # queryset = UserSerializer.objects.all()
+
     
     def get_object(self, *args, **kwargs):
         return self.request.user

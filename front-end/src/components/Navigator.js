@@ -4,6 +4,8 @@ import store from '../redux/store';
 import {logout} from '../redux/actions/auth'
 import { connect } from 'react-redux';
 import {Typography} from '@material-ui/core';
+import {faGamepad} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const handleLogout = (e) => {
@@ -20,7 +22,9 @@ const Navigator = (props) => {
             <Typography variant="h6" style={{marginLeft: 240, color:'#00bcd4'}} >Farcry Online</Typography>
             {
                 props.isAuthenticated &&
-                <Button  className='ml-auto' variant="outline-info" onClick={handleLogout}>Logout</Button>
+                <Button  className='ml-auto' variant="outline-info" onClick={handleLogout} style={{borderWidth: 0, borderRadius: '45%'}}>
+                    <FontAwesomeIcon icon={faGamepad}/>
+                </Button>
             }
         </Navbar>
         </Row>

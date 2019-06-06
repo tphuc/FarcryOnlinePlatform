@@ -86,6 +86,7 @@ class Settings extends Component {
         .then(res => { alert('Successfully updated'); store.dispatch(loadUser())})
         .catch(err => alert("Invalid fields"))
     }
+
     render() {
         return (
             <Container style={{ marginTop: 80 }}>

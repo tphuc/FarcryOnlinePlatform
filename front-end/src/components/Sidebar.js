@@ -7,10 +7,13 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { faHome, faUser, faCog, faKeyboard } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faCog, faKeyboard, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import store from '../redux/store';
 import {selectTab} from '../redux/actions/tabs';
+import {Button} from 'react-bootstrap';
+import {logout} from '../redux/actions/auth'
+
 
 
 const drawerWidth = 240;
@@ -43,7 +46,11 @@ const useStyles = {
         backgroundColor: '#1a1a1a'
     }
 }
-
+const handleLogout = (e) => {
+    e.preventDefault();
+    store.dispatch(logout());
+    window.location.href = '/login'
+}
 
 class Index extends Component {
     constructor(props) {
@@ -88,7 +95,9 @@ class Index extends Component {
                         ))}
                     </List>
                 <Divider />
-
+                <div style={{display: 'flex', alignItems:'center', justifyContent:'center'}}>
+                    <Button style={{position: "absolute", bottom: 0, border: 0, width:'100%'}} variant='outline-info'onClick={handleLogout} > <FontAwesomeIcon icon={faSignOutAlt}/>Logout</Button>
+                </div>
             </Drawer>
         );
     }

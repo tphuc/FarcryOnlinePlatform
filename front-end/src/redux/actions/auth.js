@@ -44,7 +44,13 @@ export const login = (username, password) => dispatch => {
             });
         })
         .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status));
+            if(err.response){
+                dispatch(returnErrors(err.response.data, err.response.status));
+            }
+            else{
+                alert('Server is not responding! Please exit!')
+            }
+            
             dispatch({
                 type: LOGIN_FAILED
             });
@@ -61,7 +67,12 @@ export const logout = () => (dispatch, getState) => {
             });
         })
         .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status));
+            if(err.response){
+                dispatch(returnErrors(err.response.data, err.response.status));
+            }
+            else{
+                alert('Server is not responding! Please exit!')
+            }
             dispatch({type: EXCEPTION});
         });
 };
@@ -86,7 +97,12 @@ export const register = ( username, email, password ) => dispatch => {
         });
       })
       .catch(err => {
-        dispatch(returnErrors(err.response.data, err.response.status));
+        if(err.response){
+            dispatch(returnErrors(err.response.data, err.response.status));
+        }
+        else{
+            alert('Server is not responding! Please exit!')
+        }
         dispatch({
             type: REGISTER_FAILED
         });

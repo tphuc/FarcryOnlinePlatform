@@ -9,21 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const handleLogout = (e) => {
-    const fs = require('fs');
     e.preventDefault();
-    // const shell = require('electron').shell;
-    // shell.showItemInFolder('./')
-    // ipcRenderer.send('execute', 'asdasdasdasd')
-    var exec = window.require('child_process').spawn;
-    var path = window.require('path');
-    console.log(window.location.pathname)
-    exec('python3',['./my_script.py'])
+    var execFile = window.require('child_process').execFile;
+    const path = window.require('path').resolve();
+    const python_file = 'my_script.py';
+    const python_path = path + '/watch_dog/' + python_file;
+    execFile('python3', [python_path, localStorage.getItem('token'), path])
 }
 const Navigator = (props) => {
     return (
         <Row>
-
-        
         <Navbar variant='dark' fixed='top' style={{backgroundColor: '#111111'}} >
             <Typography variant="h6" style={{marginLeft: 240, color:'#00bcd4'}} >Farcry Online</Typography>
             {

@@ -26,20 +26,21 @@ def checkIfProcessRunning(processName):
 def post_data(param_match, param_frags, username, id_user, token, param_setting):
     username_master = 'phuccoker'
     url_settings = 'https://farcryonline.herokuapp.com/api/user/{}/settings'.format(id_user)
-    if username != username_master:
+    if username == username_master:
         url_match = 'https://farcryonline.herokuapp.com/api/matches.create'
         r = requests.post(url=url_match, data=param_match)
         id = r.json()['match']['id']
         url_matchfrags = 'https://farcryonline.herokuapp.com/api/frags.create'
-        for item in param_frags:
-            param_frag = {
-                'killer': item[1],
-                'victim': item[2],
-                'weapon_code': item[3],
-                'match': id,
-                'frag_time': item[0]
-            }
-            requests.post(url=url_matchfrags, data=param_frag)
+        if param_frags:
+            for item in param_frags:
+                param_frag = {
+                    'killer': item[1],
+                    'victim': item[2],
+                    'weapon_code': item[3],
+                    'match': id,
+                    'frag_time': item[0]
+                }
+                requests.post(url=url_matchfrags, data=param_frag)
     requests.put(url=url_settings, headers={'Authorization': token}, data=param_setting)
 
 
@@ -85,19 +86,23 @@ def get_sysconf_end(path):
 def write_gameconf_end(path):
     with open(path+'game.cfg', 'r') as f:
         data = f.read()
-    with open('game.cfg', 'w') as f1:
+    with open('game.txt', 'w') as f1:
         f1.write(data)
 
 
 def write_gameconf_start(path):
-    with open('game.cfg', 'r') as f:
+    with open('game.txt', 'r') as f:
         data = f.read()
     with open(path+'game.cfg', 'w') as f1:
         f1.write(data)
 
 
 def run_farcry(path):
-    system(path+'farcry.exe')
+    system(path)
+
+
+def get_needed_path(path):
+    return path[:-16]
 
 
 def main():
@@ -106,22 +111,23 @@ def main():
     parser.add_argument('rootpath')
     args = parser.parse_args()
     check = True
+    path = get_needed_path(args.rootpath)
     old_data_settings = get_data_settings(args.token)
-    write_sysconf_start(args.rootpath, old_data_settings)
-    write_gameconf_start(args.rootpath)
+    write_sysconf_start(path, old_data_settings)
+    write_gameconf_start(path)
     run_farcry(args.rootpath)
     while check:
-        if not checkIfProcessRunning(args.rootpath + 'farcry.exe'):
+        if not checkIfProcessRunning('farcry.exe'):
             break
-    log_data = read_log_file(args.rootpath + 'log.txt')
+    log_data = read_log_file(path + 'log.txt')
     convert_string_to_dictionary_data(log_data)
     parse_log_start_time(log_data)
     parse_match_mode_and_map(log_data)
     frags = parse_frags(log_data)
     start, end = parse_game_session_start_and_end_times(log_data)
     param_match = {'start_time': start, 'end_time': end}
-    write_gameconf_end(args.rootpath)
-    param_setting = get_sysconf_end(args.rootpath)
+    write_gameconf_end(path)
+    param_setting = get_sysconf_end(path)
     post_data(param_match, frags, old_data_settings['username'], old_data_settings['id'], args.token, param_setting)
 
 

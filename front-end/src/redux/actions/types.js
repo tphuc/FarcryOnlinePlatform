@@ -1,5 +1,6 @@
 // SETTING
 export const SET_SLIDER_VALUE = 'SET_SLIDER_VALUE'
+export const SET_GAME_PATH = 'SET_GAME_PATH'
 
 // USER
 

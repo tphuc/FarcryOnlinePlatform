@@ -10,3 +10,11 @@ export const setSliderValue = (value, varName) => {
     }
 }
 
+export const setGamePath = (path) => {
+    return {
+        type: types.SET_GAME_PATH,
+        payload:{
+            path: path
+        }
+    }
+}

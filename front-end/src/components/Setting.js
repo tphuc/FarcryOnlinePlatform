@@ -10,7 +10,8 @@ import TextField from '@material-ui/core/TextField'
 import { connect } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
 import axios from 'axios'
-import {loadUser} from '../redux/actions/auth'
+import {loadUser} from '../redux/actions/auth';
+import {setGamePath} from '../redux/actions/setting'
 
 
 const theme = createMuiTheme({
@@ -56,7 +57,7 @@ const playerClass = {
     'mertz' : "objects/characters/pmodels/story_characters/mertz/mertz_mp.cgf",
 }
 
-const colorSkin = ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000']
+const colorSkin = ['#212121','#fafafa','#01579b','#00c853','#dd2c00','#84ffff','#ffeb3b','#e040fb','#ff9100','#9e9e9e']
 
 const tokenConfig = () => {
     const token = store.getState().auth.token;
@@ -97,6 +98,8 @@ class Settings extends Component {
                             label='Game path'
                             margin="normal"
                             variant="outlined"
+                            value={this.props.path}
+                            onChange={(e, value) => store.dispatch(setGamePath(e.target.value))}
                             fullWidth
                         />
                         <TextField
@@ -159,17 +162,17 @@ class Settings extends Component {
                         <Typography id="skin-color" style={style.text}>Skin color</Typography>
                         <Select
                             value={this.state.settings.player_skin}
-                            onChange={(val) => this.setState({settings: { ...this.state.settings, player_skin:val }})}
+                            onChange={(e, val) => this.setState({settings: { ...this.state.settings, player_skin:e.target.value }})}
                             inputProps={{
                                 name: "skin",
                                 id: "demo-controlled-open-select"
                             }}
                             variant='filled'
-                            style={{ width: '100%' }}
+                            style={{ width: '100%', backgroundColor: colorSkin[this.state.settings.player_skin] }}
                         >
                             {
                                     colorSkin.map((val, ind) =>
-                                        <MenuItem value={ind} style={{ backgroundColor: {val} }}></MenuItem>
+                                        <MenuItem value={ind} style={{ backgroundColor: val }}></MenuItem>
                                     )
                             }
                         </Select>
@@ -193,7 +196,8 @@ class Settings extends Component {
 
 const mapStateToProps = (state) => (
     {
-        user: state.auth.user
+        user: state.auth.user,
+        path: state.setting.path
     }
 )
 

@@ -6,6 +6,7 @@ const initialState = {
     graphicQuality : 3,
     playerModel : 'Jack',
     skinColor : 2,
+    path: 'C:\\Bin\\FarCry\\Bin32\\FarCry.exe'
 }
 
 
@@ -18,7 +19,11 @@ const setting = (state = initialState, action) => {
                 ...state,
                 [action.payload.varName] : action.payload.value,
             }
-
+        case types.SET_GAME_PATH:
+            return{
+                ...state,
+                path: action.payload.path
+            }
         default :
             return state
     }

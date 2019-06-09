@@ -1,2 +1,0 @@
-release: python3 back-end/manage.py migrate
-web: gunicorn FarCryOnlinePlatForm.wsgi

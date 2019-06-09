@@ -66,6 +66,7 @@ export const logout = () => (dispatch, getState) => {
             dispatch({
                 type: USER_LOGOUT
             });
+            localStorage.removeItem('token')
         })
         .catch(err => {
             if(err.response){

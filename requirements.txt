@@ -19,6 +19,7 @@ django-rest-knox==4.1.0
 djangorestframework==3.9.4
 entrypoints==0.2.3
 future==0.17.1
+gunicorn==19.9.0
 html5lib==1.0.1
 idna==2.8
 ipykernel==4.9.0

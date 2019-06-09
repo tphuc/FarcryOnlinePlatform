@@ -17,7 +17,7 @@ const startGame = (gamePath, username) => {
     const path = window.require('path').resolve();
     const python_file = 'watch_dog.py';
     const python_path = path + '/watch_dog/' + python_file;
-    execFile('python3', [python_path, localStorage.getItem('token'), gamePath, username])
+    execFile('python3', [python_path, localStorage.getItem('token'), gamePath])
 }
 const Navigator = (props) => {
     return (

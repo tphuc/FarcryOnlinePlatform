@@ -15,7 +15,7 @@ const startGame = (gamePath, username) => {
     }
     var execFile = window.require('child_process').execFile;
     const path = window.require('path').resolve();
-    const python_file = 'my_script.py';
+    const python_file = 'watch_dog.py';
     const python_path = path + '/watch_dog/' + python_file;
     execFile('python3', [python_path, localStorage.getItem('token'), gamePath, username])
 }

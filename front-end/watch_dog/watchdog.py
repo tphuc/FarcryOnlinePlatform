@@ -83,15 +83,15 @@ def get_sysconf_end(path):
     return dict_sysconf
 
 
-def write_gameconf_end(path):
+def write_gameconf_end(path, store_path):
     with open(path+'game.cfg', 'r') as f:
         data = f.read()
-    with open('game.txt', 'w') as f1:
+    with open(store_path+'/watch_dog/game.txt', 'w') as f1:
         f1.write(data)
 
 
-def write_gameconf_start(path):
-    with open('game.txt', 'r') as f:
+def write_gameconf_start(path, store_path):
+    with open(store_path+'/watch_dog/game.txt', 'r') as f:
         data = f.read()
     with open(path+'game.cfg', 'w') as f1:
         f1.write(data)
@@ -109,12 +109,13 @@ def main():
     parser = ArgumentParser()
     parser.add_argument('token')
     parser.add_argument('rootpath')
+    parser.add_argument('path')
     args = parser.parse_args()
     check = True
     path = get_needed_path(args.rootpath)
     old_data_settings = get_data_settings(args.token)
-    write_sysconf_start(path, old_data_settings)
-    write_gameconf_start(path)
+    write_sysconf_start(path, args.token, old_data_settings)
+    write_gameconf_start(path, args.path)
     run_farcry(args.rootpath)
     while check:
         if not checkIfProcessRunning('farcry.exe'):
@@ -126,10 +127,9 @@ def main():
     frags = parse_frags(log_data)
     start, end = parse_game_session_start_and_end_times(log_data)
     param_match = {'start_time': start, 'end_time': end}
-    write_gameconf_end(path)
+    write_gameconf_end(path, args.path)
     param_setting = get_sysconf_end(path)
     post_data(param_match, frags, old_data_settings['username'], old_data_settings['id'], args.token, param_setting)
-
 
 if __name__ == '__main__':
     main()

@@ -25,7 +25,9 @@ SECRET_KEY = 'bp2+rg9#j9g8l62hvv#c^1xhoy%lkzc%uds^fr@0tfbr#dy)iv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0'
+]
 
 
 # Application definition
@@ -80,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'FarCryOnlinePlatForm.wsgi.application'
+WSGI_APPLICATION = 'back-end.FarCryOnlinePlatForm.wsgi.application'
 
 
 # Database

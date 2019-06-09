@@ -3,6 +3,10 @@
 ## Goals
   - Create an online platform that can **store, display** information of Farcry **matches** and **players**
 
+## Server link: 
+  https://farcryonline.herokuapp.com/api
+## trello link: 
+  https://trello.com/b/BbOvsgsl/farcryonlineplatform
 
       
 ## Implement

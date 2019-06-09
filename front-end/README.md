@@ -1,6 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-## Server link: https://farcryonline.herokuapp.com/api
-## trello link: https://trello.com/b/BbOvsgsl/farcryonlineplatform
+
 
 ## Available Scripts
 

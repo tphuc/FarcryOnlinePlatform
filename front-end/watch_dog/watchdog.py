@@ -91,9 +91,9 @@ def write_gameconf_end(path):
 
 
 def write_gameconf_start(path):
-    with open('game.cfg', 'w') as f:
+    with open('game.cfg', 'r') as f:
         data = f.read()
-    with open(path+'game.cfg', 'r') as f1:
+    with open(path+'game.cfg', 'w') as f1:
         f1.write(data)
 
 

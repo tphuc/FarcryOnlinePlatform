@@ -50,10 +50,10 @@
     yarn add [dependencie]
 ```
 
-## INGAME
+## APP sceenshots
 ![login](/description/login.png)
 ![sa](/description/home.png)
-![setting](/description/setting.png)
+![setting](/description/settings.png)
 ![pro](/description/profile.png)
 ![pro](/description/play_button.png)
       

@@ -1,2 +1,2 @@
 release: python3 back-end/manage.py migrate
-web: gunicorn back-end/FarCryOnlinePlatForm.wsgi --log-file -
+web: gunicorn back-end/FarCryOnlinePlatForm.wsgi
